@@ -1,3 +1,5 @@
+import { publicUrl } from "@/lib/utils";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -10,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <img
-                src="/appmillers-logo.png"
+                src={publicUrl("appmillers-logo.png")}
                 alt="AppMillers IT School"
                 className="h-8 w-auto object-contain"
               />

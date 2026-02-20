@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { publicUrl } from "@/lib/utils";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +30,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
             <img
-              src="/appmillers-logo.png"
+              src={publicUrl("appmillers-logo.png")}
               alt="AppMillers IT School"
               className="h-9 w-auto object-contain"
             />

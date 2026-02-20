@@ -1,3 +1,5 @@
+import { publicUrl } from "@/lib/utils";
+
 export default function Hero() {
   return (
     <section className="relative min-h-0 py-8 pt-20 lg:min-h-screen lg:py-0 lg:pt-16 lg:flex lg:items-center overflow-hidden bg-background">
@@ -133,7 +135,7 @@ export default function Hero() {
                 <div className="flex justify-center mb-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden bg-muted border-2 border-border flex items-center justify-center relative mx-auto">
                     <img
-                      src="/elshad-karimov.png"
+                      src={publicUrl("elshad-karimov.png")}
                       alt="Elshad Karimov"
                       className="w-full h-full object-cover relative z-10"
                       onError={(e) => {

@@ -62,7 +62,13 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+**GitHub Pages (this repo)**
+
+1. In the repo on GitHub go to **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch").
+3. Push to `main`; the workflow builds the app and deploys it. The site will be at `https://<username>.github.io/<repo-name>/`.
+
+If Source is "Deploy from a branch", the site serves the raw repo (so `/src/main.tsx` and assets 404). It must be **GitHub Actions** so the built `dist/` is deployed.
 
 ## Can I connect a custom domain to my Lovable project?
 

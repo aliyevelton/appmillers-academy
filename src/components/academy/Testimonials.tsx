@@ -28,6 +28,8 @@ const testimonials = [
   },
 ];
 
+import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+
 export default function Testimonials() {
   return (
     <section className="py-24 bg-surface">
@@ -47,7 +49,7 @@ export default function Testimonials() {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <ScrollRevealStagger className="grid md:grid-cols-3 gap-6" staggerMs={100}>
           {testimonials.map((t, i) => (
             <div
               key={i}
@@ -87,7 +89,7 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollRevealStagger>
       </div>
     </section>
   );

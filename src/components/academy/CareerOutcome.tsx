@@ -33,6 +33,8 @@ const outcomes = [
   },
 ];
 
+import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+
 export default function CareerOutcome() {
   return (
     <section id="career" className="py-24 bg-surface">
@@ -70,7 +72,7 @@ export default function CareerOutcome() {
           </div>
 
           {/* Right */}
-          <div className="space-y-5">
+          <ScrollRevealStagger className="space-y-5" staggerMs={100}>
             {outcomes.map((o, i) => (
               <div
                 key={i}
@@ -85,7 +87,7 @@ export default function CareerOutcome() {
                 </div>
               </div>
             ))}
-          </div>
+          </ScrollRevealStagger>
         </div>
       </div>
     </section>

@@ -45,7 +45,7 @@ export default function FinalCTA() {
             </a>
             <a
               href="#programs"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-dark-foreground/15 text-dark-foreground font-semibold text-base hover:border-dark-foreground/30 hover:bg-dark-foreground/5 transition-all duration-200"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-dark-foreground/30 text-dark-foreground font-semibold text-base hover:bg-dark-foreground hover:text-primary-dark transition-colors duration-200"
             >
               Proqramlara Bax
             </a>

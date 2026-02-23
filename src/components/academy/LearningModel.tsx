@@ -19,6 +19,8 @@ const steps = [
   },
 ];
 
+import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+
 export default function LearningModel() {
   return (
     <section className="py-24 bg-background">
@@ -42,7 +44,7 @@ export default function LearningModel() {
           {/* Connector line */}
           <div className="hidden lg:block absolute top-10 left-[16.67%] right-[16.67%] h-px bg-border z-0" />
 
-          <div className="grid lg:grid-cols-3 gap-8 relative z-10">
+          <ScrollRevealStagger className="grid lg:grid-cols-3 gap-8 relative z-10" staggerMs={120}>
             {steps.map((s, i) => (
               <div
                 key={i}
@@ -88,7 +90,7 @@ export default function LearningModel() {
                 )}
               </div>
             ))}
-          </div>
+          </ScrollRevealStagger>
         </div>
       </div>
     </section>

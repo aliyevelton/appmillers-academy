@@ -13,9 +13,9 @@ export default function Hero() {
       />
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-0 lg:min-h-[80vh]">
-          {/* Left Content */}
-          <div className="flex flex-col gap-8">
+        <div className="flex flex-col items-center min-h-0 lg:min-h-[80vh]">
+          {/* Left Content - centered when card is hidden */}
+          <div className="flex flex-col gap-8 items-center text-center max-w-3xl mx-auto">
             {/* Badge */}
             <div className="slide-up inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-primary-light border border-primary/20 lg:mt-6">
               <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
@@ -34,17 +34,17 @@ export default function Hero() {
             </div>
 
             {/* Subtext */}
-            <p className="slide-up-delay-2 text-lg lg:text-xl text-muted-foreground font-medium leading-relaxed max-w-lg">
+            <p className="slide-up-delay-2 text-lg lg:text-xl text-muted-foreground font-medium leading-relaxed max-w-lg mx-auto">
               200.000+ tələbənin etibar etdiyi kurslar, real layihə
               əsaslı təlim və sənaye standartlarına uyğun karyera
               proqramları indi əyani olaraq Bakıda.
             </p>
 
             {/* CTAs */}
-            <div className="slide-up-delay-3 flex flex-col sm:flex-row gap-3">
+            <div className="slide-up-delay-3 flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href="#programs"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-base hover:bg-primary-dark transition-colors duration-200 shadow-sm"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-base border border-transparent hover:bg-background hover:text-primary hover:border-primary transition-colors duration-200 shadow-sm"
               >
                 Proqramlara Bax
               </a>
@@ -62,7 +62,7 @@ export default function Hero() {
             </div>
 
             {/* Trust line */}
-            <div className="slide-up-delay-4 flex items-center gap-6 pt-5 pb-4 lg:pb-12 border-t border-border">
+            <div className="slide-up-delay-4 flex items-center justify-center gap-6 pt-5 pb-4 lg:pb-12 border-t border-border w-full">
               <div className="flex -space-x-2">
                 {[
                   "bg-primary",
@@ -86,8 +86,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Instructor stats card (shown on mobile below content, on desktop beside) */}
-          <div className="relative fade-in mt-10 lg:mt-0 overflow-visible">
+          {/* Right - Instructor stats card (hidden for now; remove "hidden" to show again) */}
+          <div className="hidden relative fade-in mt-10 lg:mt-0 overflow-visible">
             <div className="relative bg-card rounded-2xl border border-border shadow-card-hover pt-20 pb-6 px-6 lg:pt-8 lg:pb-8 lg:px-8 max-w-md mx-auto overflow-visible">
               {/* Bestseller badge: mobile = top center half overflow; desktop = top right corner overflow */}
               <div

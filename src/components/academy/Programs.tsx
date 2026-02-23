@@ -41,6 +41,8 @@ const programs = [
   },
 ];
 
+import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+
 export default function Programs() {
   return (
     <section id="programs" className="py-24 bg-background">
@@ -64,7 +66,7 @@ export default function Programs() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <ScrollRevealStagger className="grid md:grid-cols-2 gap-6" staggerMs={100}>
           {programs.map((p) => (
             <div
               key={p.id}
@@ -134,7 +136,7 @@ export default function Programs() {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollRevealStagger>
 
         {/* CTA */}
         <div className="mt-10 text-center">

@@ -1,3 +1,5 @@
+import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+
 const metrics = [
   {
     value: "200,000+",
@@ -46,7 +48,7 @@ export default function TrustBar() {
   return (
     <section className="pt-12 pb-16 lg:pt-20 bg-surface border-y border-border">
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <ScrollRevealStagger className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6" staggerMs={90}>
           {metrics.map((m, i) => (
             <div
               key={i}
@@ -65,7 +67,7 @@ export default function TrustBar() {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollRevealStagger>
 
         {/* Udemy brand mention */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">

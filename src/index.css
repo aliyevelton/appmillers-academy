@@ -130,6 +130,11 @@ body[data-scroll-locked] {
 }
 
 @layer utilities {
+  /* DM Sans for headings with capital Ə (U+018F) – Manrope lacks this glyph */
+  .font-elaqe {
+    font-family: 'DM Sans', var(--font-body);
+  }
+
   .text-balance {
     text-wrap: balance;
   }

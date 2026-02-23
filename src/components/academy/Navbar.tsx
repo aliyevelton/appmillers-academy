@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { publicUrl } from "@/lib/utils";
 
 export default function Navbar() {
@@ -12,9 +13,9 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Proqramlar", href: "#programs" },
-    { label: "Karyera", href: "#career" },
-    { label: "Haqqımızda", href: "#about" },
+    { label: "Proqramlar", href: "/#programs" },
+    { label: "Karyera", href: "/#career" },
+    { label: "Haqqımızda", href: "/#about" },
   ];
 
   return (
@@ -28,7 +29,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-18">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group">
             <img
               src={publicUrl("appmillers-logo.png")}
               alt="AppMillers IT School"
@@ -38,7 +39,7 @@ export default function Navbar() {
               <span className="font-black text-foreground text-sm tracking-tight">AppMillers</span>
               <span className="font-medium text-muted-foreground text-[10px] tracking-widest uppercase">IT School</span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -55,18 +56,18 @@ export default function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#contact"
+            <Link
+              to="/elaqe"
               className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
             >
               Əlaqə
-            </a>
-            <a
-              href="#demo"
+            </Link>
+            <Link
+              to="/konsultasiya"
               className="inline-flex items-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-dark transition-colors duration-200"
             >
               Konsultasiya
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -96,14 +97,21 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <div className="pt-3 border-t border-border">
-              <a
-                href="#demo"
-                className="inline-flex items-center px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold w-full justify-center"
+            <div className="pt-3 border-t border-border space-y-2">
+              <Link
+                to="/elaqe"
+                className="block px-2 py-2.5 text-sm font-semibold text-primary hover:text-primary-dark"
+                onClick={() => setMobileOpen(false)}
+              >
+                Əlaqə
+              </Link>
+              <Link
+                to="/konsultasiya"
+                className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold w-full"
                 onClick={() => setMobileOpen(false)}
               >
                 Konsultasiya
-              </a>
+              </Link>
             </div>
           </div>
         )}

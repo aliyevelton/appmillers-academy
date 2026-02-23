@@ -4,7 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
+// For GitHub Pages project site (username.github.io/REPO_NAME), base is set in CI via VITE_BASE.
 export default defineConfig(({ mode }) => ({
+  base: process.env.VITE_BASE ?? "/",
   server: {
     host: "::",
     port: 8080,

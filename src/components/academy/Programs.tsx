@@ -1,51 +1,10 @@
-const programs = [
-  {
-    id: "01",
-    title: "Frontend Development",
-    tag: "Ən populyar",
-    duration: "6 ay",
-    description:
-      "HTML, CSS, JavaScript, React.js. Müasir interfeys dizaynından başlayaraq tam layihə qurma bacarıqları.",
-    outcomes: ["React Developer", "UI Engineer", "Freelancer"],
-    color: "primary",
-  },
-  {
-    id: "02",
-    title: "Backend Development",
-    tag: "Yüksək tələb",
-    duration: "7 ay",
-    description:
-      "Node.js, Express, verilənlər bazaları, API dizaynı. Server tərəfi məntiqdən mikroservis arxitekturasına qədər.",
-    outcomes: ["Backend Developer", "Full-Stack", "API Engineer"],
-    color: "accent",
-  },
-  {
-    id: "03",
-    title: "Data & AI",
-    tag: "Gələcəyin sahəsi",
-    duration: "8 ay",
-    description:
-      "Python, Machine Learning, Data Analysis. Məlumat analitikasından süni intellekt modellərinin qurulmasına.",
-    outcomes: ["Data Analyst", "ML Engineer", "AI Developer"],
-    color: "primary",
-  },
-  {
-    id: "04",
-    title: "Cybersecurity",
-    tag: "Kritik sahə",
-    duration: "6 ay",
-    description:
-      "Şəbəkə təhlükəsizliyi, etik hacking, sistem auditləri. Real ssenarilərlə müdafiə bacarıqları.",
-    outcomes: ["Security Analyst", "Pen Tester", "SOC Analyst"],
-    color: "primary",
-  },
-];
-
+import { Link } from "react-router-dom";
 import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+import { programs } from "@/data/programs";
 
 export default function Programs() {
   return (
-    <section id="programs" className="py-24 bg-background">
+    <section id="programs" className="py-24 bg-background scroll-mt-20 lg:scroll-mt-24">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="max-w-2xl mb-16">
@@ -68,9 +27,10 @@ export default function Programs() {
         {/* Cards grid */}
         <ScrollRevealStagger className="grid md:grid-cols-2 gap-6" staggerMs={100}>
           {programs.map((p) => (
-            <div
+            <Link
               key={p.id}
-              className="group relative bg-card border border-border rounded-2xl p-8 hover:-translate-y-1 transition-all duration-300 hover:shadow-card-hover cursor-pointer"
+              to={`/programlar/${p.slug}`}
+              className="group relative block bg-card border border-border rounded-2xl p-8 hover:-translate-y-1 transition-all duration-300 hover:shadow-card-hover"
             >
               {/* Top row */}
               <div className="flex items-start justify-between mb-6">
@@ -134,7 +94,7 @@ export default function Programs() {
                   </svg>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </ScrollRevealStagger>
 

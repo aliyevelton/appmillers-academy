@@ -17,7 +17,7 @@ export default function Contact() {
                 Əlaqə
               </h1>
               <p className="text-lg text-primary-foreground/85 leading-relaxed">
-                Bizimlə əlaqə saxlayın və ya formanı dolduraraq sizə zəng edəcəyik.
+                Bizimlə əlaqə saxlayın və ya formanı doldurun, biz sizə zəng edəcəyik.
               </p>
             </div>
           </div>

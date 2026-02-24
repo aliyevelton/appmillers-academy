@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Consultation from "./pages/Consultation";
 import Contact from "./pages/Contact";
+import ProgramDetail from "./pages/ProgramDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/konsultasiya" element={<Consultation />} />
           <Route path="/elaqe" element={<Contact />} />
+          <Route path="/programlar/:slug" element={<ProgramDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

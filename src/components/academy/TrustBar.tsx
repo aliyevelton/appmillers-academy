@@ -1,9 +1,13 @@
 import ScrollRevealStagger from "@/components/ScrollRevealStagger";
+import CountUp from "@/components/CountUp";
 
 const metrics = [
   {
     value: "200,000+",
     label: "Dünya üzrə tələbə",
+    countUp: true as const,
+    end: 200000,
+    suffix: "+",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -25,6 +29,9 @@ const metrics = [
   {
     value: "100%",
     label: "Real layihə əsaslı",
+    countUp: true as const,
+    end: 100,
+    suffix: "%",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" />
@@ -59,7 +66,11 @@ export default function TrustBar() {
               </div>
               <div>
                 <p className="text-2xl lg:text-3xl font-black text-foreground tracking-tight">
-                  {m.value}
+                  {"countUp" in m && m.countUp && "end" in m ? (
+                    <CountUp end={m.end} suffix={m.suffix ?? "+"} duration={m.end <= 100 ? 1500 : 2200} className="tabular-nums" />
+                  ) : (
+                    m.value
+                  )}
                 </p>
                 <p className="text-sm text-muted-foreground font-medium mt-0.5">
                   {m.label}

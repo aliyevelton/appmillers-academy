@@ -14,7 +14,6 @@ export default function Navbar() {
 
   const links = [
     { label: "Proqramlar", href: "/#programs" },
-    { label: "Karyera", href: "/#career" },
     { label: "Haqqımızda", href: "/#about" },
   ];
 

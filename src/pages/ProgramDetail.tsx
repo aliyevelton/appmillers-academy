@@ -74,7 +74,7 @@ export default function ProgramDetail() {
                 Əsas
               </Link>
               <span>/</span>
-              <Link to="/#programs" className="hover:text-foreground transition-colors">
+              <Link to="/#proqramlar" className="hover:text-foreground transition-colors">
                 Proqramlar
               </Link>
               <span>/</span>
@@ -306,7 +306,7 @@ export default function ProgramDetail() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/#programs"
+                to="/#proqramlar"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/30 text-primary-foreground font-semibold hover:bg-white hover:text-primary transition-colors"
               >
                 Proqramlara qayıt

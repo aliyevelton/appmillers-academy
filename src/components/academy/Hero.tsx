@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center min-h-0 lg:min-h-[80vh]">
           {/* Left Content - centered when card is hidden */}
-          <div className="flex flex-col gap-8 items-center text-center max-w-3xl mx-auto">
+          <div className="flex flex-col gap-8 items-center text-center max-w-3xl lg:max-w-5xl mx-auto">
             {/* Badge */}
             <div className="slide-up inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-primary-light border border-primary/20 lg:mt-6">
               <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
@@ -26,10 +26,18 @@ export default function Hero() {
 
             {/* Headline */}
             <div className="slide-up-delay-1">
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl text-foreground text-balance leading-[1.05]">
+              {/* Mobile: original 3-line, text-5xl */}
+              <h1 className="lg:hidden text-5xl text-foreground text-balance leading-[1.05]">
                 Qlobal bestseller{" "}
                 <span className="text-primary">tədris proqramları</span>{" "}
                 artıq Azərbaycanda.
+              </h1>
+              {/* Desktop: 2-line, larger size */}
+              <h1 className="hidden lg:block text-[3.5rem] xl:text-[4.25rem] text-foreground text-balance leading-[1.05]">
+                Qlobal bestseller{" "}
+                <span className="text-primary">tədris</span>
+                <br />
+                <span className="text-primary">proqramları</span> artıq Azərbaycanda.
               </h1>
             </div>
 
@@ -43,7 +51,7 @@ export default function Hero() {
             {/* CTAs */}
             <div className="slide-up-delay-3 flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="#programs"
+                href="#proqramlar"
                 className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold text-base border border-transparent hover:bg-background hover:text-primary hover:border-primary transition-colors duration-200 shadow-sm"
               >
                 Proqramlara Bax

@@ -14,8 +14,8 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Proqramlar", href: "/#programs" },
-    { label: "Haqqımızda", href: "/#about" },
+    { label: "Proqramlar", href: "/#proqramlar" },
+    { label: "Haqqımızda", href: "/#haqqimizda" },
   ];
 
   return (
@@ -67,7 +67,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               to="/elaqe"
-              className="text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+              className="font-elaqe text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
             >
               Əlaqə
             </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
             <div className="pt-3 border-t border-border space-y-2">
               <Link
                 to="/elaqe"
-                className="block px-2 py-2.5 text-sm font-semibold text-primary hover:text-primary-dark"
+                className="font-elaqe block px-2 py-2.5 text-sm font-semibold text-primary hover:text-primary-dark"
                 onClick={() => setMobileOpen(false)}
               >
                 Əlaqə

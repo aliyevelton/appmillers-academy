@@ -4,7 +4,7 @@ import { programs } from "@/data/programs";
 
 export default function Programs() {
   return (
-    <section id="programs" className="py-24 bg-background scroll-mt-20 lg:scroll-mt-24">
+    <section id="proqramlar" className="py-24 bg-background scroll-mt-20 lg:scroll-mt-24">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="max-w-2xl mb-16">

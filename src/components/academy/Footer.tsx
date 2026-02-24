@@ -82,7 +82,7 @@ export default function Footer() {
               ].map((l) => (
                 <li key={l}>
                   <a
-                    href="#programs"
+                    href="#proqramlar"
                     className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {l}
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-bold text-foreground mb-4 tracking-wide">Əlaqə</h4>
+            <h4 className="font-elaqe text-sm font-bold text-foreground mb-4 tracking-wide pl-[25px]">Əlaqə</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="mt-0.5 shrink-0">

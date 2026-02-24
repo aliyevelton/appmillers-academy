@@ -44,7 +44,7 @@ export default function FinalCTA() {
               Konsultasiya
             </a>
             <a
-              href="#programs"
+              href="#proqramlar"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-dark-foreground/30 text-dark-foreground font-semibold text-base hover:bg-dark-foreground hover:text-primary-dark transition-colors duration-200"
             >
               Proqramlara Bax

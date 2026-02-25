@@ -8,7 +8,20 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-24 lg:pt-28">
+      <main className="pt-14 lg:pt-18">
+        {/* Breadcrumb - same design as ProgramDetail */}
+        <section className="py-4 border-b border-border bg-surface">
+          <div className="container mx-auto px-6 lg:px-8">
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Link to="/" className="hover:text-foreground transition-colors">
+                Əsas
+              </Link>
+              <span>/</span>
+              <span className="text-foreground font-medium font-elaqe">Əlaqə</span>
+            </nav>
+          </div>
+        </section>
+
         {/* Page title strip - dark blue */}
         <section className="py-12 lg:py-16 bg-primary-dark border-b border-primary-dark">
           <div className="container mx-auto px-6 lg:px-8">

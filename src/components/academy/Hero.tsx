@@ -3,15 +3,6 @@ import { publicUrl } from "@/lib/utils";
 export default function Hero() {
   return (
     <section className="relative min-h-0 py-8 pt-20 lg:min-h-screen lg:py-0 lg:pt-16 lg:flex lg:items-center overflow-hidden bg-background">
-      {/* Subtle grid background */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center min-h-0 lg:min-h-[80vh]">
           {/* Left Content - centered when card is hidden */}

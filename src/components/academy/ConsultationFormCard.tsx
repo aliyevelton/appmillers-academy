@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Phone, Mail, ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Phone, Mail, ArrowRight, Check, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -8,8 +8,7 @@ export const PROGRAM_OPTIONS = [
   { id: "frontend", label: "Frontend Development" },
   { id: "backend", label: "Backend Development" },
   { id: "data-ai", label: "Data & AI" },
-  { id: "cybersecurity", label: "Cybersecurity" },
-  { id: "other", label: "Digər" },
+  { id: "cybersecurity", label: "Cybersecurity" }
 ];
 
 export type ConsultationFormData = {
@@ -25,16 +24,30 @@ type ConsultationFormCardProps = {
 };
 
 export default function ConsultationFormCard({ onSubmit }: ConsultationFormCardProps) {
-  const [step, setStep] = useState<1 | 2>(1);
-  const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
+  const [selectedProgram, setSelectedProgram] = useState<string>("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [ad, setAd] = useState("");
   const [soyad, setSoyad] = useState("");
   const [telefon, setTelefon] = useState("");
   const [email, setEmail] = useState("");
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedProgram) return;
+    if (!selectedProgram) {
+      setDropdownOpen(true);
+      return;
+    }
     const data: ConsultationFormData = { selectedProgram, ad, soyad, telefon, email };
     onSubmit?.(data);
     console.log(data); // TODO: remove when backend connected
@@ -53,12 +66,11 @@ export default function ConsultationFormCard({ onSubmit }: ConsultationFormCardP
         />
         <div className="relative z-10">
           <h2 className="text-2xl lg:text-3xl font-black text-dark-foreground mb-4 leading-tight">
-            {step === 1 ? "Proqramı seçin." : "Karyeranı birlikdə planlayaq."}
+            Karyeranı birlikdə planlayaq.
           </h2>
           <p className="text-dark-muted text-sm lg:text-base leading-relaxed">
-            {step === 1
-              ? "Maraqlandığınız sahəni seçin, sonra əlaqə məlumatlarınızı daxil edin."
-              : "Ad, soyad, telefon və email qeyd edin — sizə zəng edib proqramlar haqqında məlumat verəcəyik."}
+            Formanı doldurun — tədris mütəxəssislərimiz sizinlə əlaqə saxlayıb
+            suallarınıza cavab verəcək.
           </p>
         </div>
         <div className="mt-8 lg:mt-12 space-y-4 relative z-10">
@@ -83,138 +95,138 @@ export default function ConsultationFormCard({ onSubmit }: ConsultationFormCardP
         </div>
       </div>
 
-      {/* Right panel - step 1: choice / step 2: form */}
+      {/* Right panel - single form */}
       <div className="lg:w-[58%] bg-background p-8 lg:p-10 flex flex-col justify-center">
-        {step === 1 ? (
-          <>
-            <p className="text-sm font-medium text-muted-foreground mb-4">
-              Maraqlandığınız proqramı seçin
-            </p>
-            <div className="space-y-3">
-              {PROGRAM_OPTIONS.map((opt) => (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => setSelectedProgram(opt.id)}
-                  className={`w-full flex items-center justify-between gap-3 rounded-xl border-2 px-5 py-4 text-left font-medium transition-all ${
-                    selectedProgram === opt.id
-                      ? "border-primary bg-primary-light text-primary"
-                      : "border-border bg-background text-foreground hover:border-primary/50 hover:bg-surface"
-                  }`}
-                >
-                  <span>{opt.label}</span>
-                  {selectedProgram === opt.id && (
-                    <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5" />
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
-            <div className="pt-6">
-              <Button
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Program selection - custom dropdown (card style) */}
+          <div className="space-y-2" ref={dropdownRef}>
+            <Label className="text-foreground font-medium">
+              Maraqlandığınız proqram
+            </Label>
+            <div className="relative">
+              <button
                 type="button"
-                disabled={!selectedProgram}
-                onClick={() => setStep(2)}
-                className="w-full h-12 rounded-xl bg-primary text-primary-foreground font-semibold text-base border-2 border-transparent hover:bg-background hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none"
+                onClick={() => setDropdownOpen((o) => !o)}
+                className={`w-full flex items-center justify-between gap-3 rounded-xl border-2 px-5 py-4 text-left font-medium transition-all ${
+                  selectedProgram
+                    ? "border-primary bg-primary-light text-primary"
+                    : "border-border bg-background text-foreground hover:border-primary/50 hover:bg-surface"
+                }`}
+                aria-expanded={dropdownOpen}
+                aria-haspopup="listbox"
+                aria-label="Proqramı seçin"
               >
-                Davam et
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {selectedProgram && (
-              <div className="flex items-center justify-between rounded-xl bg-surface border border-border px-4 py-3">
-                <span className="text-sm text-muted-foreground">Seçildi:</span>
-                <span className="text-sm font-semibold text-foreground">
-                  {PROGRAM_OPTIONS.find((o) => o.id === selectedProgram)?.label}
+                <span>
+                  {selectedProgram
+                    ? PROGRAM_OPTIONS.find((o) => o.id === selectedProgram)?.label
+                    : "Proqramı seçin"}
                 </span>
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className="text-xs font-medium text-primary hover:text-primary-dark flex items-center gap-1"
+                <ChevronDown
+                  className={`w-5 h-5 shrink-0 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              {dropdownOpen && (
+                <div
+                  className="absolute top-full left-0 right-0 z-20 mt-2 space-y-2 rounded-xl border border-border bg-background p-2 shadow-lg"
+                  role="listbox"
                 >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  Dəyiş
-                </button>
-              </div>
-            )}
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="ad" className="text-foreground font-medium">
-                  Ad
-                </Label>
-                <Input
-                  id="ad"
-                  type="text"
-                  placeholder="Adınız"
-                  value={ad}
-                  onChange={(e) => setAd(e.target.value)}
-                  className="rounded-xl border-border h-12 bg-background"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="soyad" className="text-foreground font-medium">
-                  Soyad
-                </Label>
-                <Input
-                  id="soyad"
-                  type="text"
-                  placeholder="Soyadınız"
-                  value={soyad}
-                  onChange={(e) => setSoyad(e.target.value)}
-                  className="rounded-xl border-border h-12 bg-background"
-                  required
-                />
-              </div>
+                  {PROGRAM_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      role="option"
+                      aria-selected={selectedProgram === opt.id}
+                      onClick={() => {
+                        setSelectedProgram(opt.id);
+                        setDropdownOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between gap-3 rounded-xl border-2 px-5 py-3.5 text-left font-medium transition-all ${
+                        selectedProgram === opt.id
+                          ? "border-primary bg-primary-light text-primary"
+                          : "border-border bg-background text-foreground hover:border-primary/50 hover:bg-surface"
+                      }`}
+                    >
+                      <span>{opt.label}</span>
+                      {selectedProgram === opt.id && (
+                        <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
+                          <Check className="w-3 h-3" />
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="telefon" className="text-foreground font-medium">
-                Telefon nömrəsi
+              <Label htmlFor="ad" className="text-foreground font-medium">
+                Ad
               </Label>
               <Input
-                id="telefon"
-                type="tel"
-                placeholder="050 000 00 00"
-                value={telefon}
-                onChange={(e) => setTelefon(e.target.value)}
+                id="ad"
+                type="text"
+                placeholder="Adınız"
+                value={ad}
+                onChange={(e) => setAd(e.target.value)}
                 className="rounded-xl border-border h-12 bg-background"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground font-medium">
-                Email
+              <Label htmlFor="soyad" className="text-foreground font-medium">
+                Soyad
               </Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="email@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="soyad"
+                type="text"
+                placeholder="Soyadınız"
+                value={soyad}
+                onChange={(e) => setSoyad(e.target.value)}
                 className="rounded-xl border-border h-12 bg-background"
                 required
               />
             </div>
-            <div className="pt-2">
-              <Button
-                type="submit"
-                className="w-full h-12 rounded-xl bg-primary text-primary-foreground font-semibold text-base border-2 border-transparent hover:bg-background hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2"
-              >
-                Göndər
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </form>
-        )}
-        {step === 2 && (
-          <p className="mt-6 text-xs text-muted-foreground text-center">
-            Müraciətiniz qısa müddətdə nəzərdən keçiriləcək.
-          </p>
-        )}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="telefon" className="text-foreground font-medium">
+              Telefon nömrəsi
+            </Label>
+            <Input
+              id="telefon"
+              type="tel"
+              placeholder="050 000 00 00"
+              value={telefon}
+              onChange={(e) => setTelefon(e.target.value)}
+              className="rounded-xl border-border h-12 bg-background"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-foreground font-medium">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="email@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded-xl border-border h-12 bg-background"
+              required
+            />
+          </div>
+          <div className="pt-2">
+            <Button
+              type="submit"
+              className="w-full h-12 rounded-xl bg-primary text-primary-foreground font-semibold text-base border-2 border-transparent hover:bg-background hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2"
+            >
+              Göndər
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );
